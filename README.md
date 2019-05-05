@@ -1,2 +1,2 @@
 # kafka-service
-kafka,kafka streams项目
+kafka,kafka streams相关学习
