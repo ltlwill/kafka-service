@@ -1,0 +1,35 @@
+# 服务配置
+server:
+  port: 9898
+  
+# Spring相关配置
+spring:
+  application:
+    name: kafka-service
+  profiles: 
+    active: dev
+  # kafka  
+  kafka:
+    bootstrap-servers: 192.168.2.6:9092
+    consumer: 
+      group-id: ${spring.application.name}-consumner
+      #auto-offset-reset: latest
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      #value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+        spring.deserializer.value.delegate.class: org.apache.kafka.common.serialization.LongDeserializer
+        key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        value.deserializer: org.apache.kafka.common.serialization.LongDeserializer
+    #producer: 
+      #value-serializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    properties: 
+      # 如果不配置下面两个属性，则会出现：B cannot be cast to java.lang.String的错误
+      default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+      default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+# 日志配置
+logging: 
+  config: classpath:log-config/logback-${spring.profiles.active}.xml
+  level:
+    org.apache.kafka.clients.consumer: error
