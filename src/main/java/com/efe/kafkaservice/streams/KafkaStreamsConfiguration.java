@@ -27,6 +27,14 @@ public class KafkaStreamsConfiguration {
 	private final Logger logger = LoggerFactory
 			.getLogger(KafkaStreamsConfiguration.class);
 
+	/**
+	 * 
+	 * <p>kafka streams进行单词统计: </p>
+	 * @param
+	 * @author Liu TianLong
+	 * @date 2019年5月7日 下午2:50:04
+	 * @return KStream<Integer,String>
+	 */
 	@Bean
 	public KStream<Integer, String> kStream(StreamsBuilder streamsBuilder) {
 		KStream<Integer, String> stream = streamsBuilder

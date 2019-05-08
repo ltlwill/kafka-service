@@ -19,6 +19,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import com.efe.kafkaservice.model.Customer;
+
 /**
  * 
  * <p>
@@ -50,6 +52,8 @@ public class KafkaServiceInitRunner implements CommandLineRunner {
 				.getClass());
 		props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes
 				.String().getClass());
+		
+		props.put("ThisIsMyCustomSerde", com.efe.kafkaservice.serialization.Serdes.with(Customer.class));
 
 		final StreamsBuilder builder = new StreamsBuilder();
 		final String inputTopic = "streams-plaintext-input", outputTopic = "streams-wordcount-output", store = "word-counts-store";
