@@ -53,7 +53,7 @@ public class KafkaServiceInitRunner implements CommandLineRunner {
 		props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes
 				.String().getClass());
 		
-		props.put("ThisIsMyCustomSerde", com.efe.kafkaservice.serialization.Serdes.with(Customer.class));
+		props.put("ThisIsMyCustomSerde", com.efe.kafkaservice.serialization.Serdes.of(Customer.class));
 
 		final StreamsBuilder builder = new StreamsBuilder();
 		final String inputTopic = "streams-plaintext-input", outputTopic = "streams-wordcount-output", store = "word-counts-store";

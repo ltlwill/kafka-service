@@ -16,7 +16,7 @@ import org.apache.kafka.common.serialization.Serializer;
  */
 public final class Serdes {
 
-	public static <T> Serde<T> with(Class<T> t) {
+	public static <T> Serde<T> of(Class<T> t) {
 		return new WrapperSerde<T>(new JsonSerializer<T>(),
 				new JsonDeserializer<T>());
 	}
