@@ -14,7 +14,7 @@ import org.apache.kafka.common.serialization.Serializer;
  * 
  * @author Liu TianLong 2019年5月7日 下午6:05:45
  */
-public final class Serdes {
+public final class JsonSerdes {
 
 	public static <T> Serde<T> of(Class<T> t) {
 		return new WrapperSerde<T>(new JsonSerializer<T>(),

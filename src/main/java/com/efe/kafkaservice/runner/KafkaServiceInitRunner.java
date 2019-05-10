@@ -13,6 +13,8 @@ import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.Materialized;
 import org.apache.kafka.streams.kstream.Produced;
+import org.apache.kafka.streams.kstream.Serialized;
+import org.apache.kafka.streams.kstream.SessionWindows;
 import org.apache.kafka.streams.state.KeyValueStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,7 +55,7 @@ public class KafkaServiceInitRunner implements CommandLineRunner {
 		props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes
 				.String().getClass());
 		
-		props.put("ThisIsMyCustomSerde", com.efe.kafkaservice.serialization.Serdes.of(Customer.class));
+		props.put("ThisIsMyCustomSerde", com.efe.kafkaservice.serialization.JsonSerdes.of(Customer.class));
 
 		final StreamsBuilder builder = new StreamsBuilder();
 		final String inputTopic = "streams-plaintext-input", outputTopic = "streams-wordcount-output", store = "word-counts-store";
@@ -64,6 +66,8 @@ public class KafkaServiceInitRunner implements CommandLineRunner {
 					return Arrays.asList(value.toLowerCase(Locale.getDefault())
 							.split("\\W+"));
 				})
+//				.groupBy((k,v) -> v, Serialized.with(Serdes.String(), Serdes.String()))
+//				.windowedBy(SessionWindows.with(1000))
 				.groupBy((key, value) -> {
 					logger.info("key : {},value : {}", key, value);
 					return value;
