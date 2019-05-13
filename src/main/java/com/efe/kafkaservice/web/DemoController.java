@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.efe.kafkaservice.dao.DemoDao;
 import com.efe.kafkaservice.model.Demo;
-import com.efe.kafkaservice.util.PageUtil;
-import com.github.pagehelper.PageInfo;
+import com.efe.kafkaservice.vo.PageInfoVo;
 
 /**
  * 
@@ -36,22 +35,24 @@ public class DemoController extends BaseController {
 	}
 
 	@GetMapping("/list")
-	public PageInfo<Demo> list(PageInfo<?> page,
+	public PageInfoVo<Demo> list(PageInfoVo<Demo> page,
 			@RequestParam(required = false) String name) {
 		logger.info("query name:{}", name);
 		Demo demo = new Demo(name);
 		// return demoDao.getListByEntity(new Demo(name));
-		
-//		return PageHelper.startPage(page.getPageNum(), page.getPageSize())
-//				.doSelectPage(() -> demoDao.getListByEntity(new Demo(name)));
-		
-//		List<Demo> demos = demoDao.getListPage(demo, PageUtil.toRowBounds(page));
-//		long total = demoDao.count(demo);
-//		return PageInfoVo.with(page, demos, total);
+
+		// return PageHelper.startPage(page.getPageNum(), page.getPageSize())
+		// .doSelectPage(() -> demoDao.getListByEntity(new Demo(name)));
+
+		// List<Demo> demos = demoDao.getListPage(demo,
+		// PageUtil.toRowBounds(page));
+		// long total = demoDao.count(demo);
+		// return PageInfoVo.with(page, demos, total);
 		// 分页获取
-		return new PageInfo<Demo>(demoDao.getListPage(demo,
-				PageUtil.toRowBounds(page)));
-		
+		// return new PageInfo<Demo>(demoDao.getListPage(demo,
+		// PageUtil.toRowBounds(page)));
+		return page.with(demoDao.getListPage(demo, page.toRowBounds()));
+
 	}
 
 }
