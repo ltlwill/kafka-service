@@ -24,6 +24,10 @@ public class PageInfoVo<T> extends PageInfo<T> {
 		super(list);	
 	}
 	
+	public PageInfoVo(List<T> list,int navigatePages){
+		super(list,navigatePages);	
+	}
+	
 	public static RowBounds toRowBounds(int pageNum, int pageSize) {
 		return new RowBounds(pageNum, pageSize);
 	}
