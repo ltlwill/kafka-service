@@ -8,6 +8,13 @@ spring:
     name: kafka-service
   profiles: 
     active: dev
+  #datasource:
+    #driver-class-name: oracle.jdbc.driver.OracleDriver
+    #url: jdbc:oracle:thin:@192.168.2.108:1521:ORCL
+    #username: portal_invt
+    #password: portal_invt
+    #hikari: 
+      #connection-test-query: SELECT 1 FROM DUAL  
   # kafka  
   kafka:
     bootstrap-servers: 192.168.2.6:9092
