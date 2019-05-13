@@ -7,6 +7,12 @@ import org.springframework.beans.BeanUtils;
 
 import com.github.pagehelper.PageInfo;
 
+/**
+ * 
+ * <p>分页业务VO: </p> 
+ * @author Liu TianLong
+ * 2019年5月13日 下午5:08:00
+ */
 @SuppressWarnings("serial")
 public class PageInfoVo<T> extends PageInfo<T> {
 	
