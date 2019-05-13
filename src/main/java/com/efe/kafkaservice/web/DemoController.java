@@ -35,7 +35,7 @@ public class DemoController extends BaseController {
 	}
 
 	@GetMapping("/list")
-	public PageInfoVo<Demo> list(PageInfoVo<Demo> page,
+	public PageInfoVo<?> list(PageInfoVo<?> page,
 			@RequestParam(required = false) String name) {
 		logger.info("query name:{}", name);
 		Demo demo = new Demo(name);

@@ -44,12 +44,12 @@ public class PageInfoVo<T> extends PageInfo<T> {
 		return new RowBounds(this.getPageNum(), this.getPageSize());
 	}
 	
-	public PageInfoVo<T> with(List<T> list){
+	public PageInfoVo<?> with(List<?> list){
 		return new PageInfoVo<>(list);
 	}
-	public PageInfoVo<T> with(List<T> list,long total){
-		this.setTotal(total);
-		this.setList(list);
-		return this;
+	public PageInfoVo<?> with(List<?> list,long total){
+		PageInfoVo<?> pageVo = new PageInfoVo<>(list);
+		pageVo.setTotal(total);
+		return pageVo;
 	}
 }
