@@ -1,3 +1,7 @@
+mybatis:  
+  # 开发 环境在控制台打印sql
+  configuration: 
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 # 日志配置，打印sql日志
 logging: 
   level:

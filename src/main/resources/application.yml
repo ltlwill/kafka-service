@@ -30,11 +30,10 @@ spring:
       default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
 # 集成MyBatis  
 mybatis:   
-  #mapperLocations: classpath*:mybatis/mapper/**/*.xml 
-  #typeAliasesPackage: com.hengzhiyi.it.website.model
-  #configLocation: classpath:mybatis/config/mybatis-config.xml    
+  mapperLocations: classpath*:mybatis/mapper/**/*.xml
+  typeAliasesPackage: com.hengzhiyi.it.website.model
   #configLocation: classpath:mybatis/config/mybatis-config.xml
-  configuration-properties:
+  configuration-properties: 
     # 数据库方言
     helperDialect: oracle 
     # RowBounds参数offset作为PageNum使用 - 默认不使用
@@ -46,7 +45,7 @@ mybatis:
     # 分页合理化
     reasonable: false
     # 是否支持接口参数来传递分页参数，默认false
-    supportMethodsArguments: false  
+    supportMethodsArguments: false      
 # 日志配置
 logging: 
   config: classpath:log-config/logback-${spring.profiles.active}.xml
