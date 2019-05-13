@@ -16,6 +16,8 @@ import org.apache.kafka.streams.kstream.Produced;
 import org.apache.kafka.streams.kstream.Serialized;
 import org.apache.kafka.streams.kstream.SessionWindows;
 import org.apache.kafka.streams.state.KeyValueStore;
+import org.apache.kafka.streams.state.StoreBuilder;
+import org.apache.kafka.streams.state.Stores;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -60,6 +62,8 @@ public class KafkaServiceInitRunner implements CommandLineRunner {
 		final StreamsBuilder builder = new StreamsBuilder();
 		final String inputTopic = "streams-plaintext-input", outputTopic = "streams-wordcount-output", store = "word-counts-store";
 		KStream<String, String> source = builder.stream(inputTopic);
+		// 状态存储 （使用Stores类 for lower-level的Processor API）
+//		builder.addStateStore(Stores.keyValueStoreBuilder(Stores.inMemoryKeyValueStore(store),Serdes.String(), Serdes.Long()));
 		source.flatMapValues(
 				value -> {
 					logger.info("message:{}", value);
@@ -72,6 +76,7 @@ public class KafkaServiceInitRunner implements CommandLineRunner {
 					logger.info("key : {},value : {}", key, value);
 					return value;
 				})
+				// 统计并存储状态（使用Materialized for high-level的DS）
 				.count(Materialized
 						.<String, Long, KeyValueStore<Bytes, byte[]>> as(store))
 				.toStream()

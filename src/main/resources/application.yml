@@ -28,6 +28,11 @@ spring:
       # 如果不配置下面两个属性，则会出现：B cannot be cast to java.lang.String的错误
       default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
       default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+# 集成MyBatis  
+mybatis:   
+  #mapperLocations: classpath*:mybatis/mapper/**/*.xml 
+  #typeAliasesPackage: com.hengzhiyi.it.website.model
+  configLocation: classpath:mybatis/config/mybatis-config.xml      
 # 日志配置
 logging: 
   config: classpath:log-config/logback-${spring.profiles.active}.xml
