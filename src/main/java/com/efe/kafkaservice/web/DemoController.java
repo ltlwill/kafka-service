@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.efe.kafkaservice.dao.DemoDao;
 import com.efe.kafkaservice.model.Demo;
-import com.efe.kafkaservice.vo.PageInfoVo;
+import com.efe.kafkaservice.vo.PageInfoVO;
 
 /**
  * 
@@ -35,7 +35,7 @@ public class DemoController extends BaseController {
 	}
 
 	@GetMapping("/list")
-	public PageInfoVo<?> list(PageInfoVo<?> page,
+	public PageInfoVO<?> list(PageInfoVO<?> page,
 			@RequestParam(required = false) String name) {
 		logger.info("query name:{}", name);
 		Demo demo = new Demo(name);

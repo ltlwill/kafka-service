@@ -14,17 +14,17 @@ import com.github.pagehelper.PageInfo;
  * 2019年5月13日 下午5:08:00
  */
 @SuppressWarnings("serial")
-public class PageInfoVo<T> extends PageInfo<T> {
+public class PageInfoVO<T> extends PageInfo<T> {
 	
-	public PageInfoVo(){
+	public PageInfoVO(){
 		super();
 	}
 	
-	public PageInfoVo(List<T> list){
+	public PageInfoVO(List<T> list){
 		super(list);	
 	}
 	
-	public PageInfoVo(List<T> list,int navigatePages){
+	public PageInfoVO(List<T> list,int navigatePages){
 		super(list,navigatePages);	
 	}
 	
@@ -48,11 +48,11 @@ public class PageInfoVo<T> extends PageInfo<T> {
 		return new RowBounds(this.getPageNum(), this.getPageSize());
 	}
 	
-	public PageInfoVo<?> with(List<?> list){
-		return new PageInfoVo<>(list);
+	public PageInfoVO<?> with(List<?> list){
+		return new PageInfoVO<>(list);
 	}
-	public PageInfoVo<?> with(List<?> list,long total){
-		PageInfoVo<?> pageVo = new PageInfoVo<>(list);
+	public PageInfoVO<?> with(List<?> list,long total){
+		PageInfoVO<?> pageVo = new PageInfoVO<>(list);
 		pageVo.setTotal(total);
 		return pageVo;
 	}
