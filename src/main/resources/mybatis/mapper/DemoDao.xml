@@ -3,7 +3,7 @@
 <mapper namespace="com.efe.kafkaservice.dao.DemoDao">
 
 	<!-- 配置了 mybatis.typeAliasesPackage: com.efe.kafkaservice.**.model，扫描并生成别名，所以也可以不用写全类名 -->
-	<!-- <resultMap id="DemoMap" type="Demo"> -->
+	<!-- <resultMap id="DemoMap" type="com.efe.kafkaservice.model.Demo"> -->
 	<resultMap id="DemoMap" type="Demo">
 		<result column="NAME" property="name" jdbcType="VARCHAR" />
 	</resultMap>
