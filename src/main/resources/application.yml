@@ -38,7 +38,7 @@ spring:
 # 集成MyBatis  
 mybatis:   
   mapperLocations: classpath*:mybatis/mapper/**/*.xml
-  typeAliasesPackage: com.hengzhiyi.it.website.model
+  typeAliasesPackage: com.efe.kafkaservice.**.model
   #configLocation: classpath:mybatis/config/mybatis-config.xml
   configuration-properties: 
     # 数据库方言

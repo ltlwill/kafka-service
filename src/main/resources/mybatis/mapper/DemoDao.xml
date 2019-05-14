@@ -2,7 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.efe.kafkaservice.dao.DemoDao">
 
-	<resultMap id="DemoMap" type="com.efe.kafkaservice.model.Demo">
+	<!-- 配置了 mybatis.typeAliasesPackage: com.efe.kafkaservice.**.model，扫描并生成别名，所以也可以不用写全类名 -->
+	<!-- <resultMap id="DemoMap" type="Demo"> -->
+	<resultMap id="DemoMap" type="Demo">
 		<result column="NAME" property="name" jdbcType="VARCHAR" />
 	</resultMap>
 
@@ -21,20 +23,20 @@
 	</sql>
 	
 	<!-- 获取数据 -->
-	<select id="getListByEntity" parameterType="com.efe.kafkaservice.model.Demo"
+	<select id="getListByEntity" parameterType="Demo"
 		resultMap="DemoMap">
 		<include refid="querycommonSql"/>
 		<include refid="defaultOrderSql"/>
 	</select>
 	
 	<!-- 分页获取数据 -->
-	<select id="getListPage" parameterType="com.efe.kafkaservice.model.Demo" 
+	<select id="getListPage" parameterType="Demo" 
 		resultMap="DemoMap">
 		<include refid="querycommonSql"/>
 		<include refid="defaultOrderSql"/>
 	</select>
 	
-	<select id="count" parameterType="com.efe.kafkaservice.model.Demo" resultType="Long">
+	<select id="count" parameterType="Demo" resultType="Long">
 		SELECT COUNT(1) FROM (<include refid="querycommonSql"/>)
 	</select>
 	
@@ -48,7 +50,7 @@
 	</sql>
 	
 	<!-- 保存 -->
-	<insert id="add" parameterType="com.efe.kafkaservice.model.Demo">
+	<insert id="add" parameterType="Demo">
 		INSERT INTO invt_demo(
 			<include refid="base_columns"/>
 		)
