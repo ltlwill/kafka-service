@@ -18,7 +18,7 @@ import com.efe.kafkaservice.common.Constants;
 public class IndexController extends BaseController{
 	
 	@Autowired
-	private KafkaTemplate<String,String>  kafaTemplate;
+	private KafkaTemplate<String,String>  kafkaTemplate;
 
 	@GetMapping
 	public String index(){
@@ -33,7 +33,8 @@ public class IndexController extends BaseController{
 	@GetMapping("/message/{content}")
 	public String sendMessage(@PathVariable String content){
 		logger.info("request message:{}",content); 
-		kafaTemplate.send(Constants.Topics.TOPIC_PLAIN_TEXT_INPUT, content);
+		kafkaTemplate.send(Constants.Topics.TOPIC_PLAIN_TEXT_INPUT, content);
+//		kafkaTemplate.send(topic, key, data)
 		return "success";
 	}
 }

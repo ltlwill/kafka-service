@@ -76,7 +76,7 @@ public class KafkaServiceInitRunner implements CommandLineRunner {
 					logger.info("key : {},value : {}", key, value);
 					return value;
 				})
-				// 统计并存储状态（使用Materialized for high-level的DS）
+				// 统计并存储状态（使用Materialized for high-level的DSL）
 				.count(Materialized
 						.<String, Long, KeyValueStore<Bytes, byte[]>> as(store))
 				.toStream()
