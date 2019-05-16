@@ -15,6 +15,8 @@ import org.apache.kafka.streams.kstream.Materialized;
 import org.apache.kafka.streams.kstream.Produced;
 import org.apache.kafka.streams.kstream.Serialized;
 import org.apache.kafka.streams.kstream.SessionWindows;
+import org.apache.kafka.streams.kstream.TimeWindows;
+import org.apache.kafka.streams.kstream.internals.TimeWindow;
 import org.apache.kafka.streams.state.KeyValueStore;
 import org.apache.kafka.streams.state.StoreBuilder;
 import org.apache.kafka.streams.state.Stores;
@@ -72,6 +74,7 @@ public class KafkaServiceInitRunner implements CommandLineRunner {
 				})
 //				.groupBy((k,v) -> v, Serialized.with(Serdes.String(), Serdes.String()))
 //				.windowedBy(SessionWindows.with(1000))
+//				.groupByKey().windowedBy(TimeWindows.of(5000))
 				.groupBy((key, value) -> {
 					logger.info("key : {},value : {}", key, value);
 					return value;
