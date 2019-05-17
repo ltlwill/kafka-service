@@ -21,7 +21,7 @@ spring:
     consumer: 
       group-id: ${spring.application.name}-consumner
       #auto-offset-reset: latest
-      auto-offset-reset: earliest
+      auto-offset-reset: latest
       enable-auto-commit: true
       #value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:

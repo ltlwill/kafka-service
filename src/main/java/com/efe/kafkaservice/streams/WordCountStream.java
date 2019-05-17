@@ -23,9 +23,9 @@ import com.efe.kafkaservice.common.Constants;
 @Configuration
 @EnableKafka
 @EnableKafkaStreams
-public class KafkaStreamsConfiguration {
+public class WordCountStream {
 	private final Logger logger = LoggerFactory
-			.getLogger(KafkaStreamsConfiguration.class);
+			.getLogger(WordCountStream.class);
 
 	/**
 	 * 
