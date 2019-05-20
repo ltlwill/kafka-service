@@ -36,7 +36,7 @@ public class WordCountStream {
 	 * @return KStream<Integer,String>
 	 */
 	@Bean
-	public KStream<Integer, String> kStream(StreamsBuilder streamsBuilder) {
+	public KStream<Integer, String> wordCountkStream(StreamsBuilder streamsBuilder) {
 		KStream<Integer, String> stream = streamsBuilder
 				.stream(Constants.Topics.TOPIC_PLAIN_TEXT_INPUT);
 		// stream.map((k, v) -> new KeyValue(k, v.toUpperCase())).to("ks1Out",
