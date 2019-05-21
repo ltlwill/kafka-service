@@ -28,13 +28,13 @@ public class MybatisConfig {
 	 * @date 2019年5月13日 下午2:47:03
 	 * @return PageInterceptor
 	 */
-	/*@Bean
+	@Bean
 	public PageInterceptor pageInterceptor() {
 		PageInterceptor pageInterceptor = new PageInterceptor();
 		Properties props = new Properties();
 		props.putAll(configurationProperties);
 		pageInterceptor.setProperties(props);
 		return pageInterceptor;
-	}*/
+	}
 
 }
