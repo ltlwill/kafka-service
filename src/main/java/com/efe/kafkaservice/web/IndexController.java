@@ -37,4 +37,10 @@ public class IndexController extends BaseController{
 //		kafkaTemplate.send(topic, key, data)
 		return "success";
 	}
+	@GetMapping("/sendKeywordMessage")
+	public String sendKeywordMessage(String keywords){
+//		kafkaTemplate.send(Constants.Topics.TOPIC_KEYWORD_COUNT_INPUT, System.currentTimeMillis() + "", keywords);
+		kafkaTemplate.send(Constants.Topics.TOPIC_KEYWORD_COUNT_INPUT, "1558403065124", keywords);
+		return "success";
+	}
 }

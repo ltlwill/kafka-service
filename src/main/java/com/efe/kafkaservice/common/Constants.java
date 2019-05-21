@@ -19,5 +19,7 @@ public final class Constants {
 		public static final String STORE_WORD_COUNTS = "word-counts-store";
 		public static final String STORE_KEYWORD_COUNTS = "keyword-counts-store";
 	}
+	
+	public static final String SPLIT_STR = "@--@";
 
 }

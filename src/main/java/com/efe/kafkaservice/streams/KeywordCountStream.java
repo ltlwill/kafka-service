@@ -5,13 +5,22 @@ import java.util.List;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.common.utils.Bytes;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.KStream;
+import org.apache.kafka.streams.kstream.Materialized;
+import org.apache.kafka.streams.kstream.Printed;
+import org.apache.kafka.streams.kstream.Produced;
+import org.apache.kafka.streams.state.KeyValueStore;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.efe.kafkaservice.common.Constants;
+import com.efe.kafkaservice.vo.KeywordCountVO;
+import com.github.pagehelper.Constant;
 
 /**
  * 
@@ -23,6 +32,8 @@ import com.efe.kafkaservice.common.Constants;
  */
 @Configuration
 public class KeywordCountStream {
+	
+	private static final Logger logger = LoggerFactory.getLogger(KeywordCountStream.class);
 
 	@Bean
 	public KStream<String, String> keywordCountkStream(StreamsBuilder streamsBuilder) {
@@ -31,9 +42,21 @@ public class KeywordCountStream {
 				Constants.Topics.TOPIC_KEYWORD_COUNT_INPUT,
 				Consumed.with(Serdes.String(), Serdes.String()));
 		stream.flatMapValues((key,value) -> {
-			List<String> words = Arrays.asList(value.split("\\W+"));
-			return words;
-		});
+			logger.info("flatMapValues key:{},value:{}", key,value);
+			return Arrays.asList(value.split("\\W+"));
+		}).groupBy((key,value) -> {
+			logger.info("groupBy key:{},value:{}", key,value);
+//			return value;
+			return key + Constants.SPLIT_STR + value;
+		})
+		.count(Materialized.<String, Long, KeyValueStore<Bytes,byte[]>> as(Constants.Stores.STORE_KEYWORD_COUNTS))
+//		.count()
+		.toStream()
+//		.foreach((key,value) -> logger.info("foreach key:{},value:{}",key,value));
+//		.print(Printed.<String,Long>toFile("D:\\test\\kafka-out\\keyword-count-out-file").withLabel("keyword-Stream-Sysout")); 
+//		.print(Printed.<String,Long>toSysOut().withLabel("keyword-Stream-Sysout"));
+		.to(Constants.Topics.TOPIC_KEYWORD_COUNT_OUTPUT,
+						Produced.with(Serdes.String(), Serdes.Long())); // 输出到另一个主题中
 		return stream;
 	}
 
