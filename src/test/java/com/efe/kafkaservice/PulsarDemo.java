@@ -26,7 +26,7 @@ public class PulsarDemo {
 	 * @author Liu TianLong
 	 * 2019年5月22日 上午11:08:37
 	 */
-	public static class NativeCalcWordCount implements java.util.function.Function<String, String>{
+	public static class NativeStreamCalc implements java.util.function.Function<String, String>{
 
 		@Override
 		public String apply(String input) { 
@@ -41,7 +41,7 @@ public class PulsarDemo {
 	 * @author Liu TianLong
 	 * 2019年5月22日 上午11:10:01
 	 */
-	public static class PulsarCalcWordCount implements org.apache.pulsar.functions.api.Function<String, String>{
+	public static class PulsarStreamCalc implements org.apache.pulsar.functions.api.Function<String, String>{
 
 		@Override
 		public String process(String input, Context context) throws Exception {
