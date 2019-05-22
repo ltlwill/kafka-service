@@ -2,6 +2,7 @@ package com.efe.kafkaservice;
 
 import org.apache.pulsar.client.api.PulsarClient;
 import org.apache.pulsar.functions.api.Context;
+import org.slf4j.Logger;
 
 /**
  * <p>apache pulsar demo: </p> 
@@ -44,7 +45,8 @@ public class PulsarDemo {
 
 		@Override
 		public String process(String input, Context context) throws Exception {
-//			context.getTenant();
+			Logger logger = context.getLogger();
+			logger.info("current tenant is {}",context.getTenant());
 			return String.format("pulsar function %s!", input);
 		}
 		
