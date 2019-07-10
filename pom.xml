@@ -117,6 +117,36 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			
+			<!-- 打包时跳过test插件，不运行test测试用例 -->
+	  		<!-- <plugin> 
+	  			<groupId>org.apache.maven.plugins</groupId>   
+		        <artifactId>maven-surefire-plugin</artifactId>   
+		        <version>2.22.2</version>   
+		        <configuration>   
+		          <skipTests>true</skipTests>   
+		        </configuration>   
+	  		</plugin> -->
+			
+			<!-- <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					需要反射API和Parameter.getName()为参数名， 使用java编译命令javac的–parameters参数，Maven中，–parameters参数可以添加到maven-compiler-plugin的配置部分
+				    <compilerArgument>-parameters</compilerArgument>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+				<dependencies>
+	                <dependency>
+	                    <groupId>org.codehaus.plexus</groupId>
+	                    <artifactId>plexus-compiler-eclipse</artifactId>
+	                    <version>2.8.4</version>
+	                </dependency>
+	            </dependencies>
+			</plugin> --> 
 		</plugins>
 	</build>
 
