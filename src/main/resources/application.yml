@@ -1,6 +1,8 @@
 # 服务配置
 server:
   port: 9898
+  compression:
+    enabled: true
   
 # Spring相关配置
 spring:
@@ -11,6 +13,7 @@ spring:
   datasource: 
     driver-class-name: oracle.jdbc.driver.OracleDriver
     url: jdbc:oracle:thin:@192.168.2.108:1521:ORCL
+    #url: jdbc:mysql://localhost:3306/bank_db?useUnicode=true&characterEncoding=UTF-8&useSSL=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: portal_invt
     password: portal_invt
     hikari: 
@@ -58,3 +61,15 @@ logging:
   config: classpath:log-config/logback-${spring.profiles.active}.xml
   level:
     org.apache.kafka.clients.consumer: error
+
+# 自定义环境配置  
+customEnv: 
+  # 虚拟目录配置 
+  virtualPathPattern: /istorage/**
+  virtualDirPattern: file:D:/kafkaService/files/
+  linuxVirtualDirPattern: file:/usr/web_servers/kafkaService/files/
+  # 应用入口配置
+  appEntrance: index.html    
+    
+    
+    
