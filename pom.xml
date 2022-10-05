@@ -25,7 +25,7 @@
 		<mybatis-spring-starter.version>2.0.1</mybatis-spring-starter.version>
 		<pagehelper.version>5.1.8</pagehelper.version>
 		<oracle-driver.version>1.0</oracle-driver.version>
-		<pulsar.vsersion>2.3.1</pulsar.vsersion>
+		<pulsar.vsersion>2.7.5</pulsar.vsersion>
 	</properties>
 
 	<!-- dependencies -->
